@@ -75,5 +75,15 @@ Public Class Form1
 
     End Sub
 
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+        If CheckBox1.Checked Then
+            lbl_dropoff.Visible = False
+            TextBox5.Visible = False
+        End If
 
+        If Not CheckBox1.Checked Then
+            lbl_dropoff.Visible = True
+            TextBox5.Visible = True
+        End If
+    End Sub
 End Class
