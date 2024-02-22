@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form1
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form1
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.Label3 = New System.Windows.Forms.Label()
@@ -32,12 +32,14 @@ Partial Class Form1
         Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.carListView = New System.Windows.Forms.DataGridView()
         Me.ComboBoxCarTypes = New System.Windows.Forms.ComboBox()
         Me.lbl_Help = New System.Windows.Forms.Label()
         Me.lbl_signin = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.DirectorySearcher1 = New System.DirectoryServices.DirectorySearcher()
         Me.Panel1.SuspendLayout()
+        CType(Me.carListView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -114,6 +116,7 @@ Partial Class Form1
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.carListView)
         Me.Panel1.Controls.Add(Me.ComboBoxCarTypes)
         Me.Panel1.Controls.Add(Me.lbl_Help)
         Me.Panel1.Controls.Add(Me.DateTimePicker2)
@@ -125,6 +128,14 @@ Partial Class Form1
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1238, 596)
         Me.Panel1.TabIndex = 17
+        '
+        'carListView
+        '
+        Me.carListView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.carListView.Location = New System.Drawing.Point(489, 87)
+        Me.carListView.Name = "carListView"
+        Me.carListView.Size = New System.Drawing.Size(343, 150)
+        Me.carListView.TabIndex = 15
         '
         'ComboBoxCarTypes
         '
@@ -186,6 +197,7 @@ Partial Class Form1
         Me.Text = " Car Rental"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        CType(Me.carListView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -205,4 +217,5 @@ Partial Class Form1
     Friend WithEvents lbl_signin As Label
     Friend WithEvents ComboBoxCarTypes As ComboBox
     Friend WithEvents DirectorySearcher1 As DirectoryServices.DirectorySearcher
+    Friend WithEvents carListView As DataGridView
 End Class

@@ -1,41 +1,20 @@
 ﻿Imports System.DirectoryServices
+
+
 Public Class Form1
     Private carTypes As New List(Of String) From {"Sedan", "SUV", "Truck", "Convertible", "Sports Car"}
 
+    Dim cars As New List(Of Car) From {
+            New Car With {.Category = "SUV", .Model = "Toyota RAV4", .Price = 35000},
+            New Car With {.Category = "Sedan", .Model = "Honda Civic", .Price = 25000},
+            New Car With {.Category = "Truck", .Model = "Ford F-150", .Price = 50000},
+            New Car With {.Category = "Covertible", .Model = "Ford F-100", .Price = 4000},
+            New Car With {.Category = "Sports Car", .Model = "Ford B-150", .Price = 42000}
+    }
+
+
     Private Sub Form1(sender As Object, e As EventArgs)
-        ' Populate the ComboBox with car types
-        ComboBoxCarTypes.DataSource = carTypes
 
-        ' Set up the DirectorySearcher control
-        InitializeDirectorySearcher()
-    End Sub
-
-    Private Sub InitializeDirectorySearcher()
-        ' Create a DirectorySearcher object
-        Dim searcher As New DirectorySearcher()
-
-        ' Set the search base (e.g., the root of the directory you want to search)
-        searcher.SearchRoot = New DirectoryEntry("LDAP://CN=Users,DC=example,DC=com")
-
-        ' Set the filter (e.g., to search for all users)
-        searcher.Filter = "(&(objectClass=user)(objectCategory=person))"
-
-        ' Set other properties as needed (e.g., PageSize, SearchScope, etc.)
-
-        ' Perform the initial search
-        Dim searchResultCollection As SearchResultCollection = searcher.FindAll()
-
-        ' Display the initial results or process them as needed
-        ' For simplicity, we'll just print the count of results to the console
-        Console.WriteLine("Initial search found: " & searchResultCollection.Count & " results")
-    End Sub
-
-    Private Sub ComboBoxCarTypes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxCarTypes.SelectedIndexChanged
-        ' Handle the SelectedIndexChanged event of the ComboBox
-        Dim selectedCarType As String = ComboBoxCarTypes.SelectedItem.ToString()
-
-        ' Perform actions based on the selected car type
-        MessageBox.Show("You selected: " & selectedCarType)
     End Sub
 
 
@@ -70,6 +49,12 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DateTimePicker1.MinDate = DateTime.Now
         DateTimePicker1.MinDate = DateTime.Now
+
+        ' Populate the ComboBox with car types
+        ComboBoxCarTypes.DataSource = carTypes
+
+        carListView.AutoSize = True
+        carListView.DataSource = cars
     End Sub
 
     Private Sub lbl_dropoff_Click(sender As Object, e As EventArgs) Handles lbl_dropoff.Click
@@ -86,5 +71,9 @@ Public Class Form1
             lbl_dropoff.Visible = True
             TextBox5.Visible = True
         End If
+    End Sub
+
+    Private Sub carListView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles carListView.CellContentClick
+
     End Sub
 End Class
