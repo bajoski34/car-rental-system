@@ -8,7 +8,7 @@ Public Class Form1
             New Car With {.Category = "SUV", .Model = "Toyota RAV4", .Price = 35000},
             New Car With {.Category = "Sedan", .Model = "Honda Civic", .Price = 25000},
             New Car With {.Category = "Truck", .Model = "Ford F-150", .Price = 50000},
-            New Car With {.Category = "Covertible", .Model = "Ford F-100", .Price = 4000},
+            New Car With {.Category = "Convertible", .Model = "Ford F-100", .Price = 4000},
             New Car With {.Category = "Sports Car", .Model = "Ford B-150", .Price = 42000}
     }
 
