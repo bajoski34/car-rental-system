@@ -68,7 +68,8 @@ Public Class Form1
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        DateTimePicker1.MinDate = DateTime.Now
+        DateTimePicker1.MinDate = DateTime.Now
     End Sub
 
     Private Sub lbl_dropoff_Click(sender As Object, e As EventArgs) Handles lbl_dropoff.Click
