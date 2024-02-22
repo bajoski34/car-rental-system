@@ -63,6 +63,10 @@ Public Class Form1
         DateTimePicker1.MinDate = DateTime.Today
         DateTimePicker2.MinDate = DateTime.Now.AddDays(29)
 
+        carListView.Columns.Add("CategoryColumn", "Category")
+        carListView.Columns.Add("ModelColumn", "Model")
+        carListView.Columns.Add("PriceColumn", "Price")
+
         ' Populate the ComboBox with car types
         ComboBoxCarTypes.DataSource = carTypes
 
@@ -109,11 +113,6 @@ Public Class Form1
     Private Sub DisplayCars(cars As List(Of Car))
         ' Clear existing rows
         carListView.Rows.Clear()
-
-
-        carListView.Columns.Add("CategoryColumn", "Category")
-        carListView.Columns.Add("ModelColumn", "Model")
-        carListView.Columns.Add("PriceColumn", "Price")
 
         ' Add cars to DataGridView
         For Each car In cars
