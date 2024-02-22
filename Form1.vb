@@ -54,7 +54,8 @@ Public Class Form1
         ComboBoxCarTypes.DataSource = carTypes
 
         carListView.AutoSize = True
-        carListView.DataSource = cars
+        Dim defaultCars = cars.Where(Function(car) car.Category.Equals("Sedan", StringComparison.OrdinalIgnoreCase)).ToList()
+        DisplayCars(defaultCars)
     End Sub
 
     Private Sub lbl_dropoff_Click(sender As Object, e As EventArgs) Handles lbl_dropoff.Click
@@ -75,5 +76,32 @@ Public Class Form1
 
     Private Sub carListView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles carListView.CellContentClick
 
+    End Sub
+
+    Private Sub carCategorySearch_Click(sender As Object, e As EventArgs) Handles carCategorySearch.Click
+        Dim selectedCarType As String = ComboBoxCarTypes.SelectedValue.ToString()
+
+        ' Filter the list of cars by category
+        Dim filteredCars = cars.Where(Function(car) car.Category.Equals(selectedCarType, StringComparison.OrdinalIgnoreCase)).ToList()
+
+        DisplayCars(filteredCars)
+    End Sub
+
+    Private Sub ComboBoxCarTypes_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxCarTypes.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub DisplayCars(cars As List(Of Car))
+        ' Clear existing rows
+        carListView.Rows.Clear()
+
+        carListView.Columns.Add("CategoryColumn", "Category")
+        carListView.Columns.Add("ModelColumn", "Model")
+        carListView.Columns.Add("PriceColumn", "Price")
+
+        ' Add cars to DataGridView
+        For Each car In cars
+            carListView.Rows.Add(car.Category, car.Model, car.Price.ToString("C"))
+        Next
     End Sub
 End Class

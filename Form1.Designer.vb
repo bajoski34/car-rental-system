@@ -32,6 +32,7 @@ Partial Class Form1
         Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.carCategorySearch = New System.Windows.Forms.Button()
         Me.carListView = New System.Windows.Forms.DataGridView()
         Me.ComboBoxCarTypes = New System.Windows.Forms.ComboBox()
         Me.lbl_Help = New System.Windows.Forms.Label()
@@ -116,6 +117,7 @@ Partial Class Form1
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.carCategorySearch)
         Me.Panel1.Controls.Add(Me.carListView)
         Me.Panel1.Controls.Add(Me.ComboBoxCarTypes)
         Me.Panel1.Controls.Add(Me.lbl_Help)
@@ -128,6 +130,15 @@ Partial Class Form1
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(1238, 596)
         Me.Panel1.TabIndex = 17
+        '
+        'carCategorySearch
+        '
+        Me.carCategorySearch.Location = New System.Drawing.Point(144, 257)
+        Me.carCategorySearch.Name = "carCategorySearch"
+        Me.carCategorySearch.Size = New System.Drawing.Size(75, 23)
+        Me.carCategorySearch.TabIndex = 16
+        Me.carCategorySearch.Text = "search "
+        Me.carCategorySearch.UseVisualStyleBackColor = True
         '
         'carListView
         '
@@ -218,4 +229,5 @@ Partial Class Form1
     Friend WithEvents ComboBoxCarTypes As ComboBox
     Friend WithEvents DirectorySearcher1 As DirectoryServices.DirectorySearcher
     Friend WithEvents carListView As DataGridView
+    Friend WithEvents carCategorySearch As Button
 End Class
