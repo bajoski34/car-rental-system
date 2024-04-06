@@ -67,6 +67,9 @@ Public Class Form1
         carListView.Columns.Add("ModelColumn", "Model")
         carListView.Columns.Add("PriceColumn", "Price")
 
+        'carListView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        'carListView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells
+
         ' Populate the ComboBox with car types
         ComboBoxCarTypes.DataSource = carTypes
 
@@ -91,8 +94,35 @@ Public Class Form1
         End If
     End Sub
 
-    Private Sub carListView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles carListView.CellContentClick
+    Private Sub carListView_RowHeaderMouseClick(sender As Object, e As DataGridViewCellMouseEventArgs) Handles carListView.RowHeaderMouseClick
+        If e.RowIndex >= 0 And Not licenseTextBox.Text.Equals("") Then  ' Check if the clicked row is valid
+            Dim clickedRow As DataGridViewRow = carListView.Rows(e.RowIndex)
+            ' Do something with the clicked row data
+            Dim rowData As String = ""
 
+            ' Get the selected dates from the DateTimePicker controls
+            Dim startDate As DateTime = DateTimePicker1.Value
+            Dim endDate As DateTime = DateTimePicker2.Value
+
+            ' Calculate the duration between the two dates
+            Dim duration As TimeSpan = endDate - startDate
+
+            ' Display the duration in days
+            Dim daysDuration As Integer = duration.Days
+
+            For Each cell As DataGridViewCell In clickedRow.Cells
+                rowData &= cell.Value.ToString() & ","
+            Next
+            ' MessageBox.Show("You clicked on row data: " & rowData)
+            ' Display row data in a dialog box
+            Dim rowDataDialog As New RowDataDialog()
+            rowDataDialog.SetRowData(rowData)
+            rowDataDialog.SetLicenseData(licenseTextBox.Text)
+            rowDataDialog.SetDurationData(daysDuration)
+            rowDataDialog.ShowDialog()
+        Else
+            licenseErrorMsg.Text = "license not supplied"
+        End If
     End Sub
 
     Private Sub carCategorySearch_Click(sender As Object, e As EventArgs) Handles carCategorySearch.Click
@@ -100,6 +130,7 @@ Public Class Form1
 
         ' Clear existing rows
         carListView.Rows.Clear()
+
 
         ' Filter the list of cars by category
         Dim filteredCars = cars.Where(Function(car) car.Category.Equals(selectedCarType, StringComparison.OrdinalIgnoreCase)).ToList()
@@ -118,6 +149,24 @@ Public Class Form1
         For Each car In cars
             carListView.Rows.Add(car.Category, car.Model, car.Price.ToString("C"))
         Next
+
+    End Sub
+
+    Private Sub licenseTextBox_TextChanged(sender As Object, e As EventArgs) Handles licenseTextBox.TextChanged
+        If licenseTextBox.Text.Length > 10 Then
+            ' Display error message if text length exceeds 10 characters
+            ErrorProvider1.SetError(licenseTextBox, "invalid license. identifier cannot exceeded (10 characters)")
+            licenseErrorMsg.Text = "invalid license number. identifier cannot exceed (10 characters)"
+
+            ' Truncate the text to the maximum allowed length
+            licenseTextBox.Text = licenseTextBox.Text.Substring(0, 11)
+            ' Set the cursor position to the end of the text
+            licenseTextBox.SelectionStart = licenseTextBox.TextLength
+        Else
+            ' Clear any previous error message
+            ErrorProvider1.SetError(licenseTextBox, "")
+            licenseErrorMsg.Text = ""
+        End If
 
     End Sub
 End Class

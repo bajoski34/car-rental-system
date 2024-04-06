@@ -22,6 +22,7 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
@@ -32,6 +33,9 @@ Partial Class Form1
         Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.licenseErrorMsg = New System.Windows.Forms.Label()
+        Me.licenseLabel = New System.Windows.Forms.Label()
+        Me.licenseTextBox = New System.Windows.Forms.TextBox()
         Me.carCategorySearch = New System.Windows.Forms.Button()
         Me.carListView = New System.Windows.Forms.DataGridView()
         Me.ComboBoxCarTypes = New System.Windows.Forms.ComboBox()
@@ -39,9 +43,11 @@ Partial Class Form1
         Me.lbl_signin = New System.Windows.Forms.Label()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.DirectorySearcher1 = New System.DirectoryServices.DirectorySearcher()
+        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Panel1.SuspendLayout()
         CType(Me.carListView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label3
@@ -117,6 +123,10 @@ Partial Class Form1
         '
         'Panel1
         '
+        Me.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.Panel1.Controls.Add(Me.licenseErrorMsg)
+        Me.Panel1.Controls.Add(Me.licenseLabel)
+        Me.Panel1.Controls.Add(Me.licenseTextBox)
         Me.Panel1.Controls.Add(Me.carCategorySearch)
         Me.Panel1.Controls.Add(Me.carListView)
         Me.Panel1.Controls.Add(Me.ComboBoxCarTypes)
@@ -131,9 +141,34 @@ Partial Class Form1
         Me.Panel1.Size = New System.Drawing.Size(1238, 596)
         Me.Panel1.TabIndex = 17
         '
+        'licenseErrorMsg
+        '
+        Me.licenseErrorMsg.AutoSize = True
+        Me.licenseErrorMsg.ForeColor = System.Drawing.Color.Crimson
+        Me.licenseErrorMsg.Location = New System.Drawing.Point(66, 279)
+        Me.licenseErrorMsg.Name = "licenseErrorMsg"
+        Me.licenseErrorMsg.Size = New System.Drawing.Size(0, 13)
+        Me.licenseErrorMsg.TabIndex = 19
+        '
+        'licenseLabel
+        '
+        Me.licenseLabel.AutoSize = True
+        Me.licenseLabel.Location = New System.Drawing.Point(13, 255)
+        Me.licenseLabel.Name = "licenseLabel"
+        Me.licenseLabel.Size = New System.Drawing.Size(44, 13)
+        Me.licenseLabel.TabIndex = 18
+        Me.licenseLabel.Text = "License"
+        '
+        'licenseTextBox
+        '
+        Me.licenseTextBox.Location = New System.Drawing.Point(66, 252)
+        Me.licenseTextBox.Name = "licenseTextBox"
+        Me.licenseTextBox.Size = New System.Drawing.Size(252, 20)
+        Me.licenseTextBox.TabIndex = 17
+        '
         'carCategorySearch
         '
-        Me.carCategorySearch.Location = New System.Drawing.Point(144, 257)
+        Me.carCategorySearch.Location = New System.Drawing.Point(144, 306)
         Me.carCategorySearch.Name = "carCategorySearch"
         Me.carCategorySearch.Size = New System.Drawing.Size(75, 23)
         Me.carCategorySearch.TabIndex = 16
@@ -142,17 +177,20 @@ Partial Class Form1
         '
         'carListView
         '
-        Me.carListView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.carListView.BackgroundColor = System.Drawing.SystemColors.Control
+        Me.carListView.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.carListView.ColumnHeadersHeight = 30
+        Me.carListView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.carListView.Location = New System.Drawing.Point(489, 87)
         Me.carListView.Name = "carListView"
-        Me.carListView.Size = New System.Drawing.Size(343, 150)
+        Me.carListView.Size = New System.Drawing.Size(282, 52)
         Me.carListView.TabIndex = 15
         '
         'ComboBoxCarTypes
         '
         Me.ComboBoxCarTypes.FormattingEnabled = True
         Me.ComboBoxCarTypes.Items.AddRange(New Object() {"Economy", "Economy cars from $37", "$37", "", "Compact", "Compact cars from $37", "$37", "", "Midsize", "Midsize cars from $37", "$37", "", "Standard", "Standard cars from $38", "$38", "", "Full-size", "Full-size cars from $38", "$38", "", "Premium", "Premium cars from $50", "$50", "", "Luxury", "Luxury cars from $70", "$70", "", "Minivan", "Minivan cars from $60", "$60", "", "SUV", "SUV cars from $45", "$45", "", "Van", "Van cars from $99", "$99", "", "Pickup", "Pickup cars from $37", "$37", "", "Sports Car", "Sports Car cars from $60", "$60", "", "Other"})
-        Me.ComboBoxCarTypes.Location = New System.Drawing.Point(16, 257)
+        Me.ComboBoxCarTypes.Location = New System.Drawing.Point(16, 306)
         Me.ComboBoxCarTypes.Name = "ComboBoxCarTypes"
         Me.ComboBoxCarTypes.Size = New System.Drawing.Size(121, 21)
         Me.ComboBoxCarTypes.TabIndex = 14
@@ -193,6 +231,10 @@ Partial Class Form1
         Me.DirectorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01")
         Me.DirectorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01")
         '
+        'ErrorProvider1
+        '
+        Me.ErrorProvider1.ContainerControl = Me
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -210,6 +252,7 @@ Partial Class Form1
         Me.Panel1.PerformLayout()
         CType(Me.carListView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -230,4 +273,8 @@ Partial Class Form1
     Friend WithEvents DirectorySearcher1 As DirectoryServices.DirectorySearcher
     Friend WithEvents carListView As DataGridView
     Friend WithEvents carCategorySearch As Button
+    Friend WithEvents licenseLabel As Label
+    Friend WithEvents licenseTextBox As TextBox
+    Friend WithEvents ErrorProvider1 As ErrorProvider
+    Friend WithEvents licenseErrorMsg As Label
 End Class
