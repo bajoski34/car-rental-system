@@ -30,6 +30,8 @@ Partial Class RowDataDialog
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
+        Me.totalCostLabel = New System.Windows.Forms.Label()
+        Me.totalCostValue = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'TextBox1
@@ -70,7 +72,7 @@ Partial Class RowDataDialog
         'licenseLabel
         '
         Me.licenseLabel.AutoSize = True
-        Me.licenseLabel.Location = New System.Drawing.Point(47, 197)
+        Me.licenseLabel.Location = New System.Drawing.Point(52, 53)
         Me.licenseLabel.Name = "licenseLabel"
         Me.licenseLabel.Size = New System.Drawing.Size(47, 13)
         Me.licenseLabel.TabIndex = 4
@@ -95,16 +97,36 @@ Partial Class RowDataDialog
         'TextBox4
         '
         Me.TextBox4.Enabled = False
-        Me.TextBox4.Location = New System.Drawing.Point(106, 197)
+        Me.TextBox4.Location = New System.Drawing.Point(111, 53)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(107, 20)
         Me.TextBox4.TabIndex = 7
+        '
+        'totalCostLabel
+        '
+        Me.totalCostLabel.AutoSize = True
+        Me.totalCostLabel.Location = New System.Drawing.Point(67, 215)
+        Me.totalCostLabel.Name = "totalCostLabel"
+        Me.totalCostLabel.Size = New System.Drawing.Size(58, 13)
+        Me.totalCostLabel.TabIndex = 8
+        Me.totalCostLabel.Text = "Total Cost:"
+        '
+        'totalCostValue
+        '
+        Me.totalCostValue.AutoSize = True
+        Me.totalCostValue.Location = New System.Drawing.Point(131, 215)
+        Me.totalCostValue.Name = "totalCostValue"
+        Me.totalCostValue.Size = New System.Drawing.Size(22, 13)
+        Me.totalCostValue.TabIndex = 9
+        Me.totalCostValue.Text = "0.0"
         '
         'RowDataDialog
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(283, 343)
+        Me.Controls.Add(Me.totalCostValue)
+        Me.Controls.Add(Me.totalCostLabel)
         Me.Controls.Add(Me.TextBox4)
         Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.TextBox2)
@@ -128,4 +150,6 @@ Partial Class RowDataDialog
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents TextBox4 As TextBox
+    Friend WithEvents totalCostLabel As Label
+    Friend WithEvents totalCostValue As Label
 End Class

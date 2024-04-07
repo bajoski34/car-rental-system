@@ -177,12 +177,19 @@ Partial Class Form1
         '
         'carListView
         '
+        Me.carListView.AllowUserToAddRows = False
+        Me.carListView.AllowUserToDeleteRows = False
+        Me.carListView.AllowUserToResizeColumns = False
+        Me.carListView.AllowUserToResizeRows = False
         Me.carListView.BackgroundColor = System.Drawing.SystemColors.Control
         Me.carListView.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.carListView.ColumnHeadersHeight = 30
         Me.carListView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.carListView.Location = New System.Drawing.Point(489, 87)
         Me.carListView.Name = "carListView"
+        Me.carListView.ReadOnly = True
+        Me.carListView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.carListView.ShowEditingIcon = False
         Me.carListView.Size = New System.Drawing.Size(282, 52)
         Me.carListView.TabIndex = 15
         '

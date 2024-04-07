@@ -17,7 +17,12 @@
         TextBox4.Text = licenseData
     End Sub
 
-    Public Sub SetDurationData(durationData As String)
-        TextBox2.Text = durationData
+    Public Sub SetDurationData(durationData)
+        Dim carPrice As Integer = TextBox3.Text
+
+        Dim totalCostNumber As String = durationData * carPrice
+        totalCostValue.Text = "£" + totalCostNumber
+
+        TextBox2.Text = durationData.ToString
     End Sub
 End Class
